@@ -1,0 +1,13 @@
+.pin-cont{
+    top: 8px;
+    right: 8px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    /* border: 1px solid #cccccc; */
+}
+.pin-cont > img{
+    /* padding:8px; */
+    width: 24px;
+    height: 24px;
+}

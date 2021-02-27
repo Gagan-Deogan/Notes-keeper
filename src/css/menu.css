@@ -1,0 +1,25 @@
+.exp-btn{
+    cursor:pointer;
+    width: 24px;
+}
+.menu-list{
+    display:none;
+    top: 24px;
+    /* bottom:0px; */
+    padding:8px;
+    border-radius: 4px;
+    background:#ffffff;
+    box-shadow: 1px 1px 4px 0px #cccccc;
+    list-style-type: none;
+}
+.menu-list>li{
+    padding:4px 0px;
+}
+.add-lab{
+    border-radius: 2px;
+    padding:2px 4px;
+    border:1px solid #ccc;
+}
+.add-lab:focus{
+    border:1px solid #ccc;
+}
