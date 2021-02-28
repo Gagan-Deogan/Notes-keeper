@@ -1,0 +1,152 @@
+/* CSS rules are kept repetitive so that you can get CSS rules for each button easily :) */
+
+*
+{
+    user-select: none;
+    -webkit-tap-highlight-color:transparent;
+}
+
+*:focus
+{
+    outline: none;
+}
+
+body
+{
+    background-color: #f1f9f9;
+}
+
+.toggle-button-cover
+{
+    display: table-cell;
+    position: relative;
+    width: 200px;
+    height: 140px;
+    box-sizing: border-box;
+}
+
+.button-cover
+{
+    height: 100px;
+    margin: 20px;
+    background-color: #fff;
+    box-shadow: 0 10px 20px -8px #c5d6d6;
+    border-radius: 4px;
+}
+
+.button-cover:before
+{
+    counter-increment: button-counter;
+    content: counter(button-counter);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: #d7e3e3;
+    font-size: 12px;
+    line-height: 1;
+    padding: 5px;
+}
+
+.button-cover, .knobs, .layer
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.button
+{
+    position: relative;
+    width: 50px;
+    height: 24px;
+    margin: 40px auto 8px 16px;
+    overflow: hidden;
+}
+
+.button.r, .button.r .layer
+{
+    border-radius: 100px;
+}
+
+  .button.b2
+  {
+      border-radius: 2px;
+  }
+
+.checkbox
+{
+    position: relative;
+    width: 60px;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.knobs
+{
+    z-index: 2;
+}
+
+.layer
+{
+    width: 60px;
+    background-color: #dfdfdf4d;
+    transition: 0.3s ease all;
+    z-index: 1;
+}
+
+#button-2 .knobs:before, #button-2 .knobs:after
+{
+    content: 'YES';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    color: #dfdfdf;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    /* padding: 9px 4px; */
+    background-color: #dfdfdf;
+    border-radius: 50%;
+    transition: 0.3s ease all;
+}
+
+#button-2 .knobs:before
+{
+    content: '';
+}
+
+#button-2 .knobs:after
+{
+    content: '';
+}
+
+#button-2 .knobs:after
+{
+    right: -28px;
+    left: auto;
+    background-color: #03A9F4;
+}
+
+#button-2 .checkbox:checked + .knobs:before
+{
+    left: -28px;
+}
+
+#button-2 .checkbox:checked + .knobs:after
+{
+    right: 4px;
+}
+
+#button-2 .checkbox:checked ~ .layer
+{
+    background-color: #03f4e885;
+}

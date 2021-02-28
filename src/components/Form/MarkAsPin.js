@@ -1,6 +1,6 @@
 import React from 'react'
-import pinIcon from '../assets/pin.svg'
-import fillpin from '../assets/fill_pin.svg'
+import pinIcon from '../../assets/pin.svg'
+import fillpin from '../../assets/fill_pin.svg'
 export const MarkAsPin = ({setFormObj,isPinned}) => {
     const handlepin = () =>{
         setFormObj((prev) =>{ 

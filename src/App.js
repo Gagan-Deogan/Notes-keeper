@@ -2,11 +2,12 @@ import './css/main.css';
 import './css/form.css';
 import './css/pin.css';
 import './css/menu.css';
-import {AddNotes} from './components/AddNotes'
+import './css/toggle.css';
+import {Home} from './components/home/Home'
 function App() {
   return (
     <div className="App">
-      <AddNotes/>
+      <Home/>
     </div>
   );
 }

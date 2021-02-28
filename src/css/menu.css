@@ -4,6 +4,7 @@
 }
 .menu-list{
     display:none;
+    z-index: 100;
     top: 24px;
     /* bottom:0px; */
     padding:8px;
@@ -23,3 +24,5 @@
 .add-lab:focus{
     border:1px solid #ccc;
 }
+
+

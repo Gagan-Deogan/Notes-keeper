@@ -18,6 +18,9 @@ body{
 .jst-ctr{
     justify-content:center;
 }
+.alg-itm{
+    align-items: center;
+}
 .pos-rel{
     position: relative;
 }
@@ -30,8 +33,15 @@ body{
 .mrg-l-8{
     margin-left: 8px;
 }
-
-
+.mrg-t-16{
+    margin-top: 16px;
+}
+.w100{
+    width: 100%;    
+}
+.flx-warp{
+    flex-wrap: wrap;
+}
 .circle{
     width: 16px;
     height: 16px;
@@ -44,4 +54,16 @@ body{
     bottom: 14px;
     right: 16px;
     width:100px;
+}
+.title{
+    font-size:16px;
+    font-weight:600;
+
+}
+.card-cont{
+    width: 55%;
+    min-width: 320px;
+    max-width: 800px;
+    padding:16px;
+    /* border:2px solid red; */
 }
