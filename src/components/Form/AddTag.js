@@ -1,13 +1,15 @@
 import React,{useRef,useState} from 'react'
 import addtag from '../../assets/add_tag.svg'
 import send from '../../assets/send.svg'
-export const AddTag = ({setFormObj,handleFormSubmit})=> {
+import deleteIcon from '../../assets/delete.svg'
+export const AddTag = ({setFormObj,handleFormSubmit,id,handleRemNote})=> {
     const menu = useRef(null);
 
     const [labelList,setLabelList] = useState(()=>{
         let loaclListOfLabels = localStorage.getItem('labelList')
         if(!!!loaclListOfLabels){
-            window.localStorage.setItem('labelList',JSON.stringify([]))
+            window.localStorage.setItem('labelList',JSON.stringify(['javascript']))
+            return [];
         }else{
             return JSON.parse(loaclListOfLabels);
         }
@@ -36,6 +38,7 @@ export const AddTag = ({setFormObj,handleFormSubmit})=> {
             setLabelList((prev)=>{ 
                 const next = [ ...prev, input];
                 window.localStorage.setItem('labelList',JSON.stringify(next))
+                console.log(next);
                 return next;
             })
         }
@@ -51,10 +54,12 @@ export const AddTag = ({setFormObj,handleFormSubmit})=> {
         }
     }
     
+    
+
     return (
         <div className ='dis-flx pos-rel' >
             <img src={addtag} className='cursor' alt="add-label" onMouseOver={handleExpand}/>
-            {handleFormSubmit && <img src={send} className="mrg-l-8 cursor" onClick={handleFormSubmit} alt="send"/> }
+            {handleFormSubmit ? <img src={send} className="mrg-l-8 cursor" onClick={handleFormSubmit} alt="send"/> : <img src={deleteIcon} className="mrg-l-8 cursor" onClick={()=>handleRemNote(id)} alt="send"/>  }
             <ul className="menu-list pos-abs" ref={menu} onMouseLeave={handleDispand} >
                 <li className='dis-flx jst-spa-bet'>
                     <input type="text" placeholder='Add Label' className="add-lab" onKeyDown={handleSubmit}/>
