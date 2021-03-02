@@ -4,7 +4,6 @@ import send from '../../assets/send.svg'
 import deleteIcon from '../../assets/delete.svg'
 export const AddTag = ({setFormObj,handleFormSubmit,id,handleRemNote})=> {
     const menu = useRef(null);
-
     const [labelList,setLabelList] = useState(()=>{
         let loaclListOfLabels = localStorage.getItem('labelList')
         if(!!!loaclListOfLabels){
@@ -38,7 +37,6 @@ export const AddTag = ({setFormObj,handleFormSubmit,id,handleRemNote})=> {
             setLabelList((prev)=>{ 
                 const next = [ ...prev, input];
                 window.localStorage.setItem('labelList',JSON.stringify(next))
-                console.log(next);
                 return next;
             })
         }
@@ -46,7 +44,6 @@ export const AddTag = ({setFormObj,handleFormSubmit,id,handleRemNote})=> {
     
     const addToCard = (e,val) =>{
         if(e.target.id !=='close'){
-            console.log(val);
             setFormObj((prev)=>{
                 const nextLabels = prev['labels'].includes(val) ? [...prev['labels']] : [...prev['labels'],val];
                 return {...prev,'labels':nextLabels}

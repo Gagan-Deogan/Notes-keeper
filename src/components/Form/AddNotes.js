@@ -3,10 +3,10 @@ import {AddTag} from './AddTag'
 import {MarkAsPin} from './MarkAsPin'
 import {ColorPtale} from './ColorPtale'
 import {LabelsList} from './LabelsList'
-export const AddNotes = ({setCardDetails,data}) => {
+export const AddNotes = ({setCardDetails,data,handleRemNote}) => {
     const textArea = useRef(null);
     const [formObj,setFormObj] = useState( ()=> data || {'title':'','note':'','pin':false,'color':'#ffffff','labels':[],id:''});
-
+    const [mounted,setMounted] = useState(true);
     const increaseTextarea = () =>{
         textArea.current.style.height = '40px'
         textArea.current.style.height = textArea.current.scrollHeight+'px'
@@ -33,7 +33,7 @@ export const AddNotes = ({setCardDetails,data}) => {
         }
     }
     const autoSave = () =>{
-        if(data){
+        if(data && mounted){
             setCardDetails( (prev) => {
                 const next = prev.map((note)=>{
                     return data.id === note.id ? formObj : note;
@@ -43,15 +43,8 @@ export const AddNotes = ({setCardDetails,data}) => {
             })
         }
     }
-    const handleRemNote = (id) =>{
-        console.log(id)
-        setCardDetails((prev)=>{
-            const next = prev.filter((item) => item['id'] === id ? false : true )
-            // window.localStorage.setItem('notes',JSON.stringify(next));
-            return [...next];
-        })
-    }
-    useEffect(autoSave, [formObj,data,setCardDetails]);
+    
+    useEffect(autoSave, [formObj,data]);
 
     return (
         <form className="dis-flx dir-col from-cont pos-rel" style={data ? {background:formObj.color,margin:'0px 16px 16px'} : {background:formObj.color}} >

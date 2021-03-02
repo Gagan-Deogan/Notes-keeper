@@ -40,17 +40,26 @@ export const Home = () => {
             setFilterIds([]);   
         }
     }
-    useEffect(filterTheList,[serachBy,cardsDetails,onlyPin])
-    console.log()
+    const handleRemNote = (id) =>{
+        setCardDetails((prev)=>{
+            const next = prev.filter((item) => item['id'] === id ? false : true )
+            return next;
+        });
+    }
+    useEffect(filterTheList,[serachBy, cardsDetails , onlyPin])
+    useEffect(()=>{
+        window.localStorage.setItem('notes',JSON.stringify(cardsDetails));
+    },[cardsDetails])
+
     return (
         <div className='dis-flx dir-col alg-itm w100 jst-ctr mrg-t-16'>
-            <AddNotes setCardDetails={ setCardDetails }/>
+            <AddNotes setCardDetails={ setCardDetails } />
             {/* serach bar */}
             <SearchBar serachBy={serachBy} setSearchBy={setSearchBy} onlyPin={onlyPin} setOnlyPin={setOnlyPin} />
             {/* cardss */}
             <section className='dis-flx flx-warp card-cont jst-spa-bet '>
                 {cardsDetails.map((note) => (
-                    filterIds.length ? filterIds.includes(note['id']) && (<AddNotes data = { note } setCardDetails ={setCardDetails } />) : (<AddNotes data = { note } setCardDetails ={setCardDetails } />)
+                    filterIds.length ? filterIds.includes(note['id']) && (<AddNotes data = { note } setCardDetails ={setCardDetails } handleRemNote={handleRemNote} key={note['id']} />) : (<AddNotes data = { note } setCardDetails ={setCardDetails } handleRemNote={handleRemNote} key={note['id']} />)
                 ))}
             </section>
         </div>
