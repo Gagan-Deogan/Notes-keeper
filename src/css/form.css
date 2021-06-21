@@ -1,65 +1,70 @@
-.from-cont{
-    padding:8px;
-    width: 86%; 
-    max-width: 350px;    
-    min-width: 300px;    
-    /* flex-basis: 50%; */
-    border-radius:4px;
-    border: solid transparent;
-    box-shadow: 0px 0px 6px rgb(0 0 0 / 10%);
+.from-cont {
+  padding: 8px;
+  width: 86%;
+  max-width: 350px;
+  min-width: 300px;
+  /* flex-basis: 50%; */
+  border-radius: 4px;
+  border: solid transparent;
+  box-shadow: 0px 0px 6px rgb(0 0 0 / 10%);
 }
-.from-cont > label{
-    padding: 8px 0px;
-    font-size:18px;
-    font-weight: 600;
+.from-cont > label {
+  padding: 8px 0px;
+  font-size: 18px;
+  font-weight: 600;
 }
 .from-cont > input {
-    padding: 4px 8px;
-    margin:0px 0 8px 0;
-    height:20px;
-    font: 400 16px 'Source Sans Pro', sans-serif ;
-    width: calc(100% - 50px);
-    border: none;
+  padding: 4px 8px;
+  height: 20px;
+  font: 400 16px "Source Sans Pro", sans-serif;
+  width: calc(100% - 50px);
+  border: none;
 }
 .from-cont > textarea {
-    padding: 8px 8px;
-    margin:0px 0 8px 0;
-    height:40px;
-    font: 400 16px 'Source Sans Pro', sans-serif ;
-    resize: none;
+  padding: 8px 8px;
+  margin: 0px 0 8px 0;
+  height: 80px;
+  font: 400 16px "Source Sans Pro", sans-serif;
+  resize: none;
 }
-.from-cont > input,textarea, input:focus,textarea:focus,input:active,textarea:active{
-    background:transparent;
-    border: none;
-    outline: none;
+.from-cont > input,
+textarea,
+input:focus,
+textarea:focus,
+input:active,
+textarea:active {
+  background: transparent;
+  border: none;
+  outline: none;
 }
-.label-cont{
-    padding:2px 4px;
-    margin-right: 8px;
-    font-size:12px;
-    border-radius:2px;
-    background:#e0ec72;
+.label-cont {
+  padding: 2px 4px;
+  margin-right: 8px;
+  font-size: 12px;
+  border-radius: 2px;
+  background: #e0ec72;
 }
-.search-cont{
-    padding:0px 8px;
-    width: 90%;
-    max-width: 800px;
+.search-cont {
+  padding: 0px 8px;
+  width: 90%;
+  max-width: 800px;
 }
-.search-bar{
-    margin: 36px 0 24px 0;
-    padding:8px 16px;
-    width: 90%;
-    border: none;
-    background:#dfdfdf;
-    border-radius:4px;
-    font-size: 16px;
-    box-shadow: 1px 2px 14px 3px #eee;
+.search-bar {
+  margin: 36px 0 24px 0;
+  padding: 8px 16px;
+  width: 90%;
+  border: none;
+  background: #dfdfdf;
+  border-radius: 4px;
+  font-size: 16px;
+  box-shadow: 1px 2px 14px 3px #eee;
 }
-.search-bar:active,.search-bar:focus{
-    background:#dfdfdf;
+.search-bar:active,
+.search-bar:focus {
+  background: #dfdfdf;
 }
-.pin-lab{
-    position: relative;
-    /* top: -10px; */
-    margin:40px 0px 0px 16px;
+.pin-lab {
+  position: relative;
+  /* top: -10px; */
+  margin: 40px 0px 0px 16px;
 }

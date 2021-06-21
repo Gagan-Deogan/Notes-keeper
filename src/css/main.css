@@ -1,76 +1,87 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap');
-*{
-    padding:0px;
-    margin:0px;
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap");
+* {
+  padding: 0px;
+  margin: 0px;
 }
-input, textarea {
+:root {
+  --primary-dark: #40efc9;
+}
+input,
+textarea {
   -webkit-user-select: text;
   -khtml-user-select: text;
   -moz-user-select: text;
   -ms-user-select: text;
   user-select: text;
 }
-body{
-    font-family: 'Source Sans Pro', sans-serif;
+body {
+  font-family: "Source Sans Pro", sans-serif;
 }
-.dis-flx{
-    display:flex;
+.dis-flx {
+  display: flex;
 }
-.dir-col{
-    flex-direction: column;
+.dir-col {
+  flex-direction: column;
 }
-.jst-spa-bet{
-    justify-content: space-between;
+.jst-spa-bet {
+  justify-content: space-between;
 }
-.jst-ctr{
-    justify-content:center;
+.jst-ctr {
+  justify-content: center;
 }
-.alg-itm{
-    align-items: center;
+.alg-itm {
+  align-items: center;
 }
-.pos-rel{
-    position: relative;
+.pos-rel {
+  position: relative;
 }
-.pos-abs{
-    position: absolute;
+.pos-abs {
+  position: absolute;
 }
-.mrg-b-8{
-    margin-bottom: 8px;
+.mrg-b-8 {
+  margin-bottom: 8px;
 }
-.mrg-l-8{
-    margin-left: 8px;
+.mrg-l-8 {
+  margin-left: 8px;
 }
-.mrg-t-16{
-    margin-top: 16px;
+.mrg-t-16 {
+  margin-top: 16px;
 }
-.w100{
-    width: 100%;    
+.w100 {
+  width: 100%;
 }
-.flx-warp{
-    flex-wrap: wrap;
+.flx-warp {
+  flex-wrap: wrap;
 }
-.circle{
-    width: 16px;
-    height: 16px;
-    border-radius:8px;
+.circle {
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
 }
-.cursor{
-    cursor:pointer;
+.cursor {
+  cursor: pointer;
 }
-.palette-cont{
-    bottom: 14px;
-    right: 16px;
-    width:100px;
+.palette-cont {
+  bottom: 14px;
+  right: 16px;
+  width: 100px;
 }
-.title{
-    font-size:16px;
-    font-weight:600;
-
+.title {
+  font-size: 16px;
+  font-weight: 600;
 }
-.card-cont{
-    width: 57%;
-    min-width: 320px;
-    max-width: 810px;
-    padding:16px;
-    /* border:2px solid red; */
+.card-cont {
+  width: 57%;
+  min-width: 320px;
+  max-width: 810px;
+  padding: 16px;
+}
+.main-layout {
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 16px;
+  row-gap: 16px;
 }
