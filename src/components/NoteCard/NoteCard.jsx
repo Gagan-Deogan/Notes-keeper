@@ -1,69 +1,71 @@
-import React, { useRef, useReducer, useEffect } from "react";
-import { AddTag } from "./AddTag";
+import { useReducer, useEffect } from "react";
+import { reducer } from "./reducer";
+import { useAuth } from "context";
+import { AddLabels } from "./AddLabels";
 import { MarkAsPin } from "./MarkAsPin";
 import { ColorPtale } from "./ColorPtale";
 import { LabelsList } from "./LabelsList";
-import send from "../../assets/send.svg";
-import deleteIcon from "../../assets/delete.svg";
-import { reducer } from "./reducer";
 import { colorList } from "./colorList";
-export const NoteCard = ({
-  setCardDetails,
-  data,
-  handleRemNote,
-  cardFor,
-  handleSubmit,
-}) => {
-  const textArea = useRef(null);
+import { UPDATE_NOTE } from "pages/Home/home.service";
+import { useMutation } from "@apollo/client";
+import { notASameData } from "utils";
+import send from "assets/send.svg";
+import deleteIcon from "assets/delete.svg";
 
+export const NoteCard = ({
+  data,
+  cardFor,
+  labelsList,
+  handleSubmit,
+  handleAddLabel,
+  handleRemoveNote,
+  handleRemoveLabel,
+}) => {
+  const {
+    user: { uid },
+  } = useAuth();
+
+  const [updateNote] = useMutation(UPDATE_NOTE);
   const initialState = data || {
     title: "",
     note: "",
     isPin: false,
     color: "white",
     labels: [],
-    id: "",
   };
   const [{ title, note, isPin, color, labels, id }, dispatch] = useReducer(
     reducer,
     initialState
   );
 
-  // const handleFormSubmit = () => {
-  //   if (formObj.title && formObj.note) {
-  //     const newObj = { ...formObj, id: `${new Date()}` };
-  //     setCardDetails((prev) => {
-  //       const next = [...prev, newObj];
-  //       window.localStorage.setItem("notes", JSON.stringify(next));
-  //       setFormObj({
-  //         title: "",
-  //         note: "",
-  //         pin: false,
-  //         color: "#ffffff",
-  //         labels: [],
-  //         id: "",
-  //       });
-  //       return next;
-  //     });
-  //   }
-  // };
-  // const autoSave = () => {
-  //   if (data) {
-  //     setCardDetails((prev) => {
-  //       const next = prev.map((note) => {
-  //         return data.id === note.id ? formObj : note;
-  //       });
-  //       window.localStorage.setItem("notes", JSON.stringify(next));
-  //       return next;
-  //     });
-  //   }
-  // };
-
-  // useEffect(autoSave, [formObj, data]);
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (cardFor === "SHOW") {
+        const newData = {
+          id,
+          userId: uid,
+          title,
+          note,
+          isPin,
+          color,
+          labels: labels.join(","),
+        };
+        const oldData = { ...data, labels: data.labels.join(",") };
+        if (notASameData(oldData, newData)) {
+          updateNote({
+            variables: newData,
+          });
+        }
+      }
+    }, 1000);
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [title, note, isPin, color, labels, cardFor]);
 
   return (
     <div
-      className="dis-flx dir-col from-cont pos-rel"
+      className="dis-flx dir-col jst-spa-bet from-cont pos-rel "
       style={{ background: colorList[color] }}>
       <MarkAsPin dispatch={dispatch} isPin={isPin} />
       <input
@@ -86,25 +88,30 @@ export const NoteCard = ({
           dispatch({ type: "SET_NOTE", payload: e.target.value })
         }
       />
-      <LabelsList list={labels} dispatch={dispatch} />
+      {!!labels.length && <LabelsList list={labels} dispatch={dispatch} />}
       <div className="dis-flx pos-rel">
-        <AddTag dispatch={dispatch} />
+        <AddLabels
+          dispatch={dispatch}
+          handleAddLabel={handleAddLabel}
+          labelsList={labelsList}
+          handleRemoveLabel={handleRemoveLabel}
+        />
         {cardFor === "SUBMIT" && (
-          <img
-            src={send}
-            className="mrg-l-8 cursor"
-            onClick={() => handleSubmit({ title, note, isPin, color, labels })}
-            alt="send"
-          />
+          <button
+            className="btn-link mrg-l-8"
+            onClick={() =>
+              handleSubmit({ title, note, isPin, color, labels, dispatch })
+            }>
+            <img src={send} alt="send" />
+          </button>
         )}{" "}
-        {/* {cardFor === "SHOW" && (
-          <img
-            src={deleteIcon}
-            className="mrg-l-8 cursor"
-            onClick={() => handleRemNote(formObj["id"])}
-            alt="send"
-          />
-        )} */}
+        {cardFor === "SHOW" && (
+          <button
+            className="btn-link mrg-l-8"
+            onClick={() => handleRemoveNote(id)}>
+            <img src={deleteIcon} alt="Delete" />
+          </button>
+        )}
       </div>
       <ColorPtale dispatch={dispatch} />
     </div>

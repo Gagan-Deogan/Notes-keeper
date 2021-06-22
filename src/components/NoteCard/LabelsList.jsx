@@ -1,6 +1,7 @@
 import React from "react";
 
 export const LabelsList = ({ list, dispatch }) => {
+  console.log(list);
   return (
     <div className="dis-flx mrg-b-8">
       {list.map((val, ind) => (
@@ -9,7 +10,7 @@ export const LabelsList = ({ list, dispatch }) => {
           <p
             className="mrg-l-8 cursor"
             onClick={() => dispatch({ type: "REMOVE_LABEL", payload: val })}>
-            x
+            X
           </p>
         </div>
       ))}

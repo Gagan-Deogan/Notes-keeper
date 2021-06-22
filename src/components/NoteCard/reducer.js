@@ -20,8 +20,18 @@ export const reducer = (state, action) => {
       return state;
     case "REMOVE_LABEL":
       const labelRemoveTO = action.payload;
-      const newLables = state.labels.filter((label) => label === labelRemoveTO);
+      const newLables = state.labels.filter((label) => label !== labelRemoveTO);
+      console.log(newLables);
       return { ...state, labels: newLables };
+    case "CLEAR_STATE": {
+      return {
+        title: "",
+        note: "",
+        isPin: false,
+        color: "white",
+        labels: [],
+      };
+    }
     default:
       return state;
   }

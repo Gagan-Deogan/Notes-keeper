@@ -2,6 +2,7 @@
 * {
   padding: 0px;
   margin: 0px;
+  box-sizing: border-box;
 }
 :root {
   --primary-dark: #40efc9;
@@ -15,6 +16,9 @@ textarea {
   user-select: text;
 }
 body {
+  max-width: 800px;
+  padding: 16px;
+  margin: auto;
   font-family: "Source Sans Pro", sans-serif;
 }
 .dis-flx {
@@ -46,6 +50,19 @@ body {
 }
 .mrg-t-16 {
   margin-top: 16px;
+}
+.mrg-t-64 {
+  margin-top: 64px;
+}
+.pos-fix-l {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+}
+.pos-fix-r {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
 }
 .w100 {
   width: 100%;
@@ -82,6 +99,30 @@ body {
   margin: auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 16px;
-  row-gap: 16px;
+  column-gap: 24px;
+  row-gap: 24px;
+}
+@media (max-width: 600px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+    column-gap: 16px;
+    row-gap: 24px;
+  }
+}
+button,
+.btn-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font: 500 1rem/1.18em "Lato", sans-serif;
+  letter-spacing: 0.04em;
+  appearance: none;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+.btn-link {
+  background: transparent;
+  padding: 0.5rem 0.5rem;
+  color: inherit;
 }
