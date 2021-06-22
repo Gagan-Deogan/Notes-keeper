@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useAuth } from "context";
 import { NoteCard } from "components/NoteCard";
 import { SearchBar } from "components/SearchBar";
 import { Spinner } from "components/Spinner";
-import { useSubscription, useMutation, gql } from "@apollo/client";
+import { useSubscription, useMutation } from "@apollo/client";
 import {
   GET_USER_NOTES,
   POST_NOTE,

@@ -1,12 +1,14 @@
 import { useAuth } from "context";
-
+import googleIcon from "assets/google.svg";
 export const Login = () => {
-  const { user, loginUser } = useAuth();
+  const { loginUser } = useAuth();
   return (
     <>
-      <div className="dir-col jst-ctr alg-itm">
-        <h1>Login</h1>
-        <button onClick={loginUser}>Login</button>
+      <div className="w100 dis-flx dir-row jst-ctr">
+        <button className="btn-pry" onClick={loginUser}>
+          <img alt="google-icon" src={googleIcon} />
+          <span className="mrg-l-8">Login</span>
+        </button>
       </div>
     </>
   );
