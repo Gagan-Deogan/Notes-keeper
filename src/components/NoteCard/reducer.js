@@ -21,7 +21,6 @@ export const reducer = (state, action) => {
     case "REMOVE_LABEL":
       const labelRemoveTO = action.payload;
       const newLables = state.labels.filter((label) => label !== labelRemoveTO);
-      console.log(newLables);
       return { ...state, labels: newLables };
     case "CLEAR_STATE": {
       return {

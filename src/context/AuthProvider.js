@@ -12,7 +12,6 @@ export const AuthProvider = ({ children }) => {
 
   const loginUser = async () => {
     setStatus("PENDING");
-    console.log("clicked");
     try {
       const { user } = await auth.signInWithPopup(provider);
       setUser(user);
