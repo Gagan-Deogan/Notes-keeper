@@ -6,24 +6,19 @@ import { MarkAsPin } from "./MarkAsPin";
 import { ColorPtale } from "./ColorPtale";
 import { LabelsList } from "./LabelsList";
 import { colorList } from "./colorList";
-import { UPDATE_NOTE } from "pages/Home/home.service";
+import { UPDATE_NOTE } from "pages/Home/home.queries";
 import { useMutation } from "@apollo/client";
 import { notASameData } from "utils";
 import send from "assets/send.svg";
 import deleteIcon from "assets/delete.svg";
+import { useHome } from "context/HomeProvider";
 
-export const NoteCard = ({
-  data,
-  cardFor,
-  labelsList,
-  handleSubmit,
-  handleAddLabel,
-  handleRemoveNote,
-  handleRemoveLabel,
-}) => {
+export const NoteCard = ({ data, cardFor }) => {
   const {
     user: { uid },
   } = useAuth();
+
+  const { handleSubmit, handleRemoveNote } = useHome();
 
   const [updateNote] = useMutation(UPDATE_NOTE);
   const initialState = data || {
@@ -90,12 +85,7 @@ export const NoteCard = ({
       />
       {!!labels.length && <LabelsList list={labels} dispatch={dispatch} />}
       <div className="dis-flx pos-rel">
-        <AddLabels
-          dispatch={dispatch}
-          handleAddLabel={handleAddLabel}
-          labelsList={labelsList}
-          handleRemoveLabel={handleRemoveLabel}
-        />
+        <AddLabels dispatch={dispatch} />
         {cardFor === "SUBMIT" && (
           <button
             className="btn-link mrg-l-8"

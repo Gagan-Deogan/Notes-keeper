@@ -1,14 +1,13 @@
+import { useHome } from "context/HomeProvider";
 import React, { useRef, useState } from "react";
 import addtag from "../../assets/add_tag.svg";
 
-export const AddLabels = ({
-  dispatch,
-  handleAddLabel,
-  handleRemoveLabel,
-  labelsList,
-}) => {
+export const AddLabels = ({ dispatch }) => {
   const menu = useRef(null);
+  const { labelResponse, handleAddLabel, handleRemoveLabel } = useHome;
   const [label, setLabel] = useState("");
+
+  const labelsList = labelResponse.data;
 
   const handleExpand = () => {
     menu.current.style.display = "block";
