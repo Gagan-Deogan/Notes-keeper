@@ -4,10 +4,10 @@ import addtag from "../../assets/add_tag.svg";
 
 export const AddLabels = ({ dispatch }) => {
   const menu = useRef(null);
-  const { labelResponse, handleAddLabel, handleRemoveLabel } = useHome;
+  const { labelResponse, handleAddLabel, handleRemoveLabel } = useHome();
   const [label, setLabel] = useState("");
 
-  const labelsList = labelResponse.data;
+  const labelsList = labelResponse.data.Labels;
 
   const handleExpand = () => {
     menu.current.style.display = "block";

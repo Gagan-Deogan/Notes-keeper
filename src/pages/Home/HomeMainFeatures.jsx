@@ -20,9 +20,6 @@ export const HomeMainFeatures = () => {
   const {
     data: { Notes },
   } = notesResponse;
-  const {
-    data: { Labels },
-  } = labelResponse;
   const notes = convertLabelsToArr(Notes);
   const searchedNotes = getSeacrhResult(notes, searchBy);
   const filteredNotes = getFilterdByPin(searchedNotes, onlyPin);
