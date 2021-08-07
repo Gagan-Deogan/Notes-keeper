@@ -1,24 +1,22 @@
 import { useContext, createContext, useState, useEffect } from "react";
-import { useStatus } from "./LoaderProvider";
 import { auth, provider } from "../firebase";
-import { useLocation, useNavigate } from "react-router";
+import { Spinner } from "components/Spinner";
 const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
-  const location = useLocation();
-  const { state } = useLocation();
-  const navigate = useNavigate();
   const [user, setUser] = useState();
-  const { setStatus } = useStatus();
+  const [isLoading, setLoading] = useState(false);
 
-  const loginUser = async () => {
-    setStatus("PENDING");
+  const loginUser = async (type) => {
     try {
-      const { user } = await auth.signInWithPopup(provider);
-      setUser(user);
-      setStatus("IDLE");
-      navigate("/home");
+      if (type === "anonymously") {
+        const { user } = await auth.signInAnonymously();
+        setUser(user);
+      } else {
+        const { user } = await auth.signInWithPopup(provider);
+        setUser(user);
+      }
     } catch (err) {
-      setStatus("IDLE");
+      console.log(err);
     }
   };
 
@@ -29,23 +27,22 @@ export const AuthProvider = ({ children }) => {
         setUser();
       })
       .catch((err) => {
-        console.log("something went wrong", err);
+        console.log(err);
       });
   };
 
   useEffect(() => {
-    // setStatus("PENDING");
     const unSubscribe = auth.onAuthStateChanged((user) => {
       setUser(user);
-      setStatus("IDLE");
-      if (location.pathname.length > 1) {
-        navigate(location.pathname);
-      } else {
-        navigate("/");
-      }
+      setLoading(false);
     });
     return unSubscribe;
-  }, []);
+  }, [setLoading]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
   return (
     <AuthContext.Provider value={{ user, logoutUser, loginUser }}>
       {children}

@@ -8,7 +8,7 @@ import {
   GET_USER_LABEL,
   POST_LABEL,
   REMOVE_LABEL,
-} from "../pages/Home/home.queries";
+} from "quiries/home.queries";
 
 const HomeContext = createContext();
 

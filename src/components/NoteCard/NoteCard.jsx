@@ -1,17 +1,16 @@
-import { useReducer, useEffect } from "react";
+import { useReducer, useEffect, useRef } from "react";
+import { useAuth, useHome } from "context";
 import { reducer } from "./reducer";
-import { useAuth } from "context";
 import { AddLabels } from "./AddLabels";
 import { MarkAsPin } from "./MarkAsPin";
 import { ColorPtale } from "./ColorPtale";
 import { LabelsList } from "./LabelsList";
 import { colorList } from "./colorList";
-import { UPDATE_NOTE } from "pages/Home/home.queries";
+import { UPDATE_NOTE } from "quiries/home.queries";
 import { useMutation } from "@apollo/client";
-import { notASameData } from "utils";
+import { isShallowEqual } from "utils";
 import send from "assets/send.svg";
 import deleteIcon from "assets/delete.svg";
-import { useHome } from "context/HomeProvider";
 
 export const NoteCard = ({ data, cardFor }) => {
   const {
@@ -19,7 +18,7 @@ export const NoteCard = ({ data, cardFor }) => {
   } = useAuth();
 
   const { handleSubmit, handleRemoveNote } = useHome();
-
+  const timerId = useRef();
   const [updateNote] = useMutation(UPDATE_NOTE);
   const initialState = data || {
     title: "",
@@ -34,8 +33,8 @@ export const NoteCard = ({ data, cardFor }) => {
   );
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      if (cardFor === "SHOW") {
+    if (cardFor === "SHOW") {
+      timerId.current = setTimeout(() => {
         const newData = {
           id,
           userId: uid,
@@ -46,17 +45,19 @@ export const NoteCard = ({ data, cardFor }) => {
           labels: labels.join(","),
         };
         const oldData = { ...data, labels: data.labels.join(",") };
-        if (notASameData(oldData, newData)) {
+        if (!isShallowEqual(oldData, newData)) {
           updateNote({
             variables: newData,
           });
         }
-      }
-    }, 1000);
+      }, 300);
+    }
     return () => {
-      clearTimeout(timeoutId);
+      if (timerId.current) {
+        clearTimeout(timerId.current);
+      }
     };
-  }, [title, note, isPin, color, labels, cardFor]);
+  }, [title, note, isPin, color, labels, cardFor, data, id, uid, updateNote]);
 
   return (
     <div
